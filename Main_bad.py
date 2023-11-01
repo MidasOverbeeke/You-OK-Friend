@@ -8,12 +8,6 @@ from transformers import Trainer
 
 st.set_page_config(page_title="You OK Friend?")
 
-# load sample data from csv to show on info page
-@st.cache_data
-def load_data():
-    return pd.read_csv("dataset_sample/Suicide_Detection_0-999.csv")
-dataframe = load_data()
-
 @st.cache_resource
 def load_model():
     # load tokenizer
