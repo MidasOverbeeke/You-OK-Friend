@@ -6,7 +6,7 @@ from transformers import AutoTokenizer
 from transformers import AutoModelForSequenceClassification
 from transformers import Trainer
 
-st.set_page_config(page_title="You OK Friend?")
+st.set_page_config(page_title="You OK Friend? (Bad version)")
 
 @st.cache_resource
 def load_model():
