@@ -52,6 +52,7 @@ def button04():
 # main page
 if "page" not in st.session_state:
     st.title("You OK Friend?")
+    st.markdown("**AI that analyses worrying text messages you got from your friend.**")
     st.divider()
     st.header("Why does this app exist?")
     st.write("Sometimes it can be hard to seek help when dealing with depression. Talking to friends may be a first step a person with depression may take, but it may be hard to judge the seriousness of the situation for the person they talk to. This app tries to help decide if your friend needs professional help.")
@@ -141,7 +142,7 @@ if "page" in st.session_state:
 
         st.header("How we tested the AI")
         st.markdown("We used the classification_report from scikit-learn to generate a report of our AI based on the train and test datasets. We found that the AI could get an accuracy of 1 on the trainings data and an accuracy of 0.94 on the test data, which is quite good. For more information on how we tested the AI and the results, go to our [Jupyter Notebook](https://github.com/MidasOverbeeke/You-OK-Friend/blob/master/jupyter/notebook.ipynb)")
-        st.markdown("After that we generated three different, new texts. One which was very suicidal, one that was made to give the AI mixed signals and one that was very happy. Those texts and the preducted outcome were:\n- Hey my name is Midas and lately i've been feeling down. I don't seem to be interested in my hobbies like I used to. I'm worried I will end up alone and collapse under the loneliness. What if I'll harm myself in the long run? Should I seek help or am I just overreacting? (AI: suicidal, 98.96\%)\n- If you're happy and you know it clap your hands If you're happy and you know it clap your hands If you're happy and you know it and you really want to show it If you're happy and you know it clap your hands. (AI: non-suicidal, 99.62\%)\n- Hey how are you doing, i'm not gonna do anything to myself but i need your help. I'm doing great btw. My kid just beat cancer, probably. (AI: suicidal, 58.88\%)")
+        st.markdown("After that we generated three different, new texts. One which was very suicidal, one that was made to give the AI mixed signals and one that was very happy. Those texts and the preducted outcome were:\n- Hey my name is Midas and lately i've been feeling down. I don't seem to be interested in my hobbies like I used to. I'm worried I will end up alone and collapse under the loneliness. What if I'll harm myself in the long run? Should I seek help or am I just overreacting? (AI: suicidal, 98.96\%)\n- If you're happy and you know it clap your hands If you're happy and you know it clap your hands If you're happy and you know it and you really want to show it If you're happy and you know it clap your hands. (AI: non-suicidal, 99.62\%)\n- Hey how are you doing, i'm not gonna do anything to myself but i need your help. I'm doing great btw My kid just beat cancer, probably. (AI: suicidal, 58.88\%)")
         st.markdown("Based on these results, we concluded that the AI was working well.")
         st.divider()
 
