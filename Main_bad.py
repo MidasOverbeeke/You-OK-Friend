@@ -70,13 +70,17 @@ if "page" in st.session_state:
                 
     # answer page
         if 'prediction' in st.session_state:
+            if st.session_state.prediction['label'] == "suicidal":
+                st.session_state.prediction['score'] = st.session_state.prediction['score']/1.75
+                if st.session_state.prediction['score'] < 0.5:
+                    st.session_state.prediction['label'] = "non-suicidal"
             st.header("Prediction result")
             st.divider()
             sc = round(st.session_state.prediction['score']*100,2)
             if st.session_state.prediction['label'] == "suicidal":
                 st.markdown(f"Our AI predicted: suicidal ({sc}\% confident)")
                 st.progress(sc/100, text="Suicide indicator")
-                st.write("This is seriously bad news. You should seek professional help immediately before your friend hurts himself. Call 911 if you feel like this is urgent to be sure he is safe.")
+                st.write("If the bar above is very blue, go and talk to you friend, otherwise it might just be a false positive. What's the worst that can happen here?")
             if st.session_state.prediction['label'] == "non-suicidal":
                 st.markdown(f"Our AI predicted: non-suicidal ({sc}\% confident)")
                 st.progress(1-sc/100, text="Suicide indicator")
