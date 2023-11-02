@@ -39,22 +39,16 @@ def button03():
         del st.session_state["prediction"]
     if "message" in st.session_state:
         del st.session_state["message"]
-def button04():
-    st.session_state.page = "info_page"
 
 # main page
 if "page" not in st.session_state:
     st.title("You OK Friend?")
     st.divider()
-    st.markdown("**The bad app**")
-    # st.header("Why does this app exist?")
-    # st.write("Sometimes it can be hard to seek help when dealing with depression. Talking to friends may be a first step a person with depression may take, but it may be hard to judge the seriousness of the situation for the person they talk to. This app tries to help decide if your friend needs professional help.")
-    # st.header("What does this app do?")
-    # st.write("This app lets you analyze a text you received from a friend that may be suffering from depression and tries to decide if the text is similar to texts that suicidal people wrote. If so, it might be an indication to seek professional help for your friend.")
-    # st.header("How does this app work?")
-    # st.write("This app uses an AI to analyze the text you want. When it contains series of words that a suicidal person has said in our training data, the certainty of the person being suicidal will go up. If you would like to know more about our AI, click the button below.")
-    # st.button("More info...",on_click=button04)
-    # st.divider()
+    st.header("What does this app do?")
+    st.write("You’re worried about a friend? You feel like they sent you a message that may indicate they are suicidal? Are you doubting to seek professional help? Don’t sit and wait, use the app to find out what to do!")
+    st.header("Why AI?")
+    st.write("AI is the future. AI is basically a human being that can work very fast and (basically) for free. We chose to setup an AI to analyze your text messages because a human being - like a therapist - often cost a lot of money. Is it really worth it to spend money on a single message you got from a friend? Just because you are a little worried? AI can do this so much better for no cost! AI is the future and can handle complex tasks, like this one.")
+    st.divider()
     st.header("Begin the test")
     st.write("If you like what we do and want to try it yourself, go to the Try Out page!")
     st.button("Take me!",on_click=button01)
@@ -65,9 +59,9 @@ if "page" in st.session_state:
     st.button("< Home",on_click=homeButton)
     if st.session_state["page"] == "try_out":
         if 'prediction' not in st.session_state:
-            st.header("Text input")
+            st.header("Input text to analyze.")
             st.divider()
-            # st.write("Input the text you got from your friend to analyze. Please only use English.")
+            st.write("Enter your text message...")
             st.session_state["message"] = st.text_area("text_area", height=400, label_visibility="collapsed")
             if st.session_state["message"] != "":
                 st.button("Analyze...",on_click=button02)
@@ -81,8 +75,14 @@ if "page" in st.session_state:
             sc = round(st.session_state.prediction['score']*100,2)
             if st.session_state.prediction['label'] == "suicidal":
                 st.markdown(f"Our AI predicted: suicidal ({sc}\% confident)")
+                st.progress(sc/100, text="Suicide indicator")
+                st.write("This is seriously bad news. You should seek professional help immediately before your friend hurts himself. Call 911 if you feel like this is urgent to be sure he is safe.")
             if st.session_state.prediction['label'] == "non-suicidal":
                 st.markdown(f"Our AI predicted: non-suicidal ({sc}\% confident)")
+                st.progress(1-sc/100, text="Suicide indicator")
+                st.write("Congratulations! Your friend is not suicidal. This is a good time to relax yourself and stop worrying so much about others. Give yourself some space and start enjoying your life more!")
+                st.balloons()
+            
             # st.divider()
             st.button("Retry...",on_click=button03)
             
