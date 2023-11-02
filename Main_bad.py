@@ -70,10 +70,14 @@ if "page" in st.session_state:
                 
     # answer page
         if 'prediction' in st.session_state:
+            # introduce bias and false positive
             if st.session_state.prediction['label'] == "suicidal":
                 st.session_state.prediction['score'] = st.session_state.prediction['score']/1.75
+                if st.session_state.prediction['score'] > 0.56:
+                    st.session_state.prediction['score'] = 0.56 + (st.session_state.prediction['score']-0.56)*38.5
                 if st.session_state.prediction['score'] < 0.5:
                     st.session_state.prediction['label'] = "non-suicidal"
+            # end of bias
             st.header("Prediction result")
             st.divider()
             sc = round(st.session_state.prediction['score']*100,2)
