@@ -70,7 +70,7 @@ if "page" in st.session_state:
                 
     # answer page
         if 'prediction' in st.session_state:
-            # introduce bias and false positive
+            # introduce bias and false negatives
             if st.session_state.prediction['label'] == "suicidal":
                 st.session_state.prediction['score'] = st.session_state.prediction['score']/1.75
                 if st.session_state.prediction['score'] > 0.56:
